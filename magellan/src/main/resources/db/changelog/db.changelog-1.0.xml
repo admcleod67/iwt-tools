@@ -1,0 +1,221 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+                   logicalFilePath="db/changelog/db.changelog-1.0.xml">
+    <changeSet author="allanm (generated)" id="1700747118850-1">
+        <createTable tableName="country">
+            <column autoIncrement="true" name="id" startWith="244" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="country_pkey"/>
+            </column>
+            <column name="name" type="TEXT"/>
+            <column name="code" type="TEXT"/>
+            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-2">
+        <createTable tableName="site">
+            <column autoIncrement="true" name="id" startWith="244" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="site_pkey"/>
+            </column>
+            <column name="name" type="TEXT"/>
+            <column name="url" type="TEXT"/>
+            <column name="active" type="BOOLEAN"/>
+            <column name="scenario" type="TEXT"/>
+            <column name="extract_rules" type="TEXT"/>
+            <column name="item_rules" type="TEXT"/>
+            <column name="default_country_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-3">
+        <createTable tableName="search">
+            <column autoIncrement="true" name="id" startWith="152" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="search_pkey"/>
+            </column>
+            <column name="site_id" type="BIGINT"/>
+            <column name="terms" type="TEXT"/>
+            <column name="country_id" type="INTEGER"/>
+            <column defaultValueComputed="now()" name="timestamp" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="search_task_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-4">
+        <createTable tableName="result">
+            <column autoIncrement="true" name="id" startWith="4674" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="result_pkey"/>
+            </column>
+            <column name="search_id" type="BIGINT"/>
+            <column name="name" type="TEXT"/>
+            <column name="description" type="TEXT"/>
+            <column name="url" type="TEXT"/>
+            <column name="product_id" type="TEXT"/>
+            <column name="image" type="TEXT"/>
+            <column name="brand" type="TEXT"/>
+            <column name="offer_price" type="TEXT"/>
+            <column name="offer_currency" type="TEXT"/>
+            <column name="offer_condition" type="TEXT"/>
+            <column name="offer_availability" type="TEXT"/>
+            <column name="seller_name" type="TEXT"/>
+            <column name="seller_url" type="TEXT"/>
+            <column name="seller_image" type="TEXT"/>
+            <column name="seller_best_rating" type="TEXT"/>
+            <column name="seller_worst_rating" type="TEXT"/>
+            <column name="seller_rating_count" type="TEXT"/>
+            <column name="seller_rating_value" type="TEXT"/>
+            <column name="aggregate_best_rating" type="TEXT"/>
+            <column name="aggregate_worst_rating" type="TEXT"/>
+            <column name="aggregate_rating_count" type="TEXT"/>
+            <column name="aggregate_rating_value" type="TEXT"/>
+            <column defaultValueComputed="now()" name="timestamp" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="tagged" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-5">
+        <createTable tableName="item_image">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="item_image_pkey"/>
+            </column>
+            <column name="result_id" type="BIGINT"/>
+            <column name="image_data" type="TEXT"/>
+            <column name="format" type="TEXT"/>
+            <column name="type" type="TEXT"/>
+            <column name="hash" type="TEXT"/>
+            <column name="timestamp" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-6">
+        <createTable tableName="settings">
+            <column autoIncrement="true" name="id" startWith="2" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="settings_pkey"/>
+            </column>
+            <column name="api_key" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-7">
+        <createTable tableName="taxonomy_search">
+            <column autoIncrement="true" name="id" startWith="3" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="taxonomy_search_pkey"/>
+            </column>
+            <column name="taxonomy_site_id" type="BIGINT"/>
+            <column name="terms" type="TEXT"/>
+            <column defaultValueComputed="now()" name="timestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-8">
+        <createTable tableName="taxonomy_result">
+            <column autoIncrement="true" name="id" startWith="873" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="taxonomy_result_pkey"/>
+            </column>
+            <column name="taxonomy_search_id" type="BIGINT"/>
+            <column name="name" type="TEXT"/>
+            <column name="details" type="TEXT"/>
+            <column name="red_list_status" type="TEXT"/>
+            <column name="vernacular_name" type="TEXT"/>
+            <column name="family" type="TEXT"/>
+            <column name="taxonomy_order" type="TEXT"/>
+            <column defaultValueComputed="now()" name="timestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-9">
+        <createTable tableName="taxonomy_site">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="taxonomy_site_pkey"/>
+            </column>
+            <column name="name" type="TEXT"/>
+            <column name="url" type="TEXT"/>
+            <column name="active" type="BOOLEAN"/>
+            <column name="scenario" type="TEXT"/>
+            <column name="extract_rules" type="TEXT"/>
+            <column name="extended_details" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-10">
+        <createTable tableName="search_task">
+            <column autoIncrement="true" name="id" startWith="2" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="search_task_pkey"/>
+            </column>
+            <column name="site_id" type="BIGINT"/>
+            <column name="terms" type="TEXT"/>
+            <column name="country_id" type="INTEGER"/>
+            <column name="last_run" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="frequency_days" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-11">
+        <createIndex indexName="country_name_index" tableName="country">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-12">
+        <createIndex indexName="site_default_country_id_index" tableName="site">
+            <column name="default_country_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-13">
+        <createIndex indexName="search_site_id_index" tableName="search">
+            <column name="site_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-14">
+        <createIndex indexName="result_search_id_index" tableName="result">
+            <column name="search_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-15">
+        <createIndex indexName="item_image_result_id_index" tableName="item_image">
+            <column name="result_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-16">
+        <createIndex indexName="taxonomy_search_site_id_index" tableName="taxonomy_search">
+            <column name="taxonomy_site_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-17">
+        <createIndex indexName="taxonomy_search_id_index" tableName="taxonomy_result">
+            <column name="taxonomy_search_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-18">
+        <addForeignKeyConstraint baseColumnNames="search_task_id" baseTableName="search"
+                                 constraintName="fk_search_search_task" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="search_task" validate="true"/>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-19">
+        <addForeignKeyConstraint baseColumnNames="site_id" baseTableName="search" constraintName="search_site_id_fkey"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="site" validate="true"/>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-20">
+        <addForeignKeyConstraint baseColumnNames="site_id" baseTableName="search_task"
+                                 constraintName="search_task_site_id_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="site" validate="true"/>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-21">
+        <addForeignKeyConstraint baseColumnNames="default_country_id" baseTableName="site"
+                                 constraintName="site_default_country_id_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="country" validate="true"/>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-22">
+        <addForeignKeyConstraint baseColumnNames="taxonomy_search_id" baseTableName="taxonomy_result"
+                                 constraintName="taxonomy_result_taxonomy_search_id_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="taxonomy_search" validate="true"/>
+    </changeSet>
+    <changeSet author="allanm (generated)" id="1700747118850-23">
+        <addForeignKeyConstraint baseColumnNames="taxonomy_site_id" baseTableName="taxonomy_search"
+                                 constraintName="taxonomy_search_taxonomy_site_id_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="taxonomy_site" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

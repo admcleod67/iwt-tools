@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "service.url",
+      "type": "java.lang.String",
+      "description": "Web crawling service base URL."
+    },
+    {
+      "name": "service.key",
+      "type": "java.lang.String",
+      "description": "Web crawling service API key."
+    }
+  ] }
